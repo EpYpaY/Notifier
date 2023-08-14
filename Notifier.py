@@ -13,7 +13,7 @@ def send_notification() :
     toast.add_actions(label="Click Here!", launch="F:\99_CDE\Python/Program.py")
     toast.show()
 
-schedule.every().sunday.at("18:00").do(send_notification)
+schedule.every().monday.at("13:32").do(send_notification)
 
 while True:
     schedule.run_pending()

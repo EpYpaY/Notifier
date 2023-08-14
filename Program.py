@@ -1,10 +1,12 @@
 import requests
-import json
 import msvcrt
+import colorama
 from tabulate import tabulate
+from colorama import Fore, Style
 
-print("""
+colorama.init(True)
 
+print(f"{Fore.RED}" +"""
 ______                ______                _ _   
 | ___ \               | ___ \              | | |  
 | |_/ /__ _  ___ ___  | |_/ /___  ___ _   _| | |_ 
@@ -12,19 +14,18 @@ ______                ______                _ _
 | |\ \ (_| | (_|  __/ | |\ \  __/\__ \ |_| | | |_ 
 \_| \_\__,_|\___\___| \_| \_\___||___/\__,_|_|\__|
                                                   
-      
-""")
+""" + f"{Style.RESET_ALL}")
 
 url = 'http://ergast.com/api/f1/current/last/results.json'
 
 response = requests.get(url)
-
 if response.status_code == 200:
-    data = json.loads(response.text)
-    
-    RaceName = data['MRData']['RaceTable']['Races'][0]['raceName']
-    Locality = data['MRData']['RaceTable']['Races'][0]['Circuit']['Location']['locality']
-    print (f'Today event was {RaceName} at {Locality}!')
+    data = response.json()
+
+    init_race = data['MRData']['RaceTable']['Races'][0]
+    RaceName = init_race['raceName']
+    Locality = init_race['Circuit']['Location']['locality']
+    print(f'Today event was {RaceName} at {Locality}!')
     print()
 
     results = []
@@ -39,12 +40,19 @@ if response.status_code == 200:
         laps = init_pilot['laps']
         time = init_pilot.get('Time', {}).get('time', 'Retired')
         pts = init_pilot['points']
-        results.append([position, number, f'{givenName} {familyName}', constructor, laps, time, pts])
+        if position == 1:
+            results.append([Fore.LIGHTYELLOW_EX + str(position), number, f'{givenName} {familyName}', constructor, laps, time, pts ])
+        elif position == 2:
+            results.append([Fore.LIGHTCYAN_EX + str(position), number, f'{givenName} {familyName}', constructor, laps, time, pts])
+        elif position == 3:
+            results.append([Fore.LIGHTRED_EX + str(position), number, f'{givenName} {familyName}', constructor, laps, time, pts + Style.RESET_ALL])
+        else:
+            results.append([position, number, f'{givenName} {familyName}', constructor, laps, time, pts])
 
-    print(tabulate(results, headers=['Position', 'Number', 'Drivers', 'Constructor', 'Laps', 'Time/Retired', 'Points' ], numalign='center'))
+    print(tabulate(results, headers=['Position', 'Number', 'Drivers', 'Constructor', 'Laps', 'Time/Retired', 'Points'], numalign='center'))
 
 else:
-    print('Error: {response.status_code}')
+    print(f'Error: {response.status_code}')
 
-print("Double press enter to exit...")
+print("\nDouble press enter to exit...")
 msvcrt.getch()
