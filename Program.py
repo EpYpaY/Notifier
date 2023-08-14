@@ -59,6 +59,8 @@ if response.status_code == 200:
 
 else:
     print(f'Error: {response.status_code}')
+    print("Press any key to exit...")
+    msvcrt.getch()
 
 print("\nDouble press enter to exit...")
 msvcrt.getch()
