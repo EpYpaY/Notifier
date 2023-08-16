@@ -11,5 +11,6 @@ I'm fan of F1 and if isn't possible for me to see a Grand Prix, my PC send a not
 Of course, it's possible to notify other element !
 
 # Screenshots
-![image](https://github.com/EpYpaY/Notifier/assets/122013216/3f28a883-e348-49f2-ae09-cd9e43d155c1)
+![image](https://github.com/EpYpaY/Notifier/assets/122013216/70c411c2-cb34-4999-90aa-49573e09d055)
+
 
