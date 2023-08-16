@@ -7,7 +7,7 @@
 # About
 
 This project is windows notifier with Python.<br> 
-I'm fan of F1 and if isn't possible for me to see a Grand Prix, my PC send a notification after with raceresults.<br> 
+I'm fan of F1 and if isn't possible for me to see a Grand Prix, my PC send a notification after with race results.<br> 
 Of course, it's possible to notify other element !
 
 # Screenshots
