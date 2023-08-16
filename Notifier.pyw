@@ -22,7 +22,7 @@ def send_notification(race_index) :
     else:
         print(f'Error: {response.status_code}')
     
-    # Analyse the scheduled time for the next race
+    # Analyse the scheduled time for the next races
     time_str = race['time'].rstrip('Z')
     scheduled_time = datetime.datetime.strptime(race['date'] + ' ' + time_str, '%Y-%m-%d %H:%M:%S')
     scheduled_time += datetime.timedelta(hours=2)

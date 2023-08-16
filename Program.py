@@ -29,7 +29,7 @@ if response.status_code == 200:
     init_race = data['MRData']['RaceTable']['Races'][0]
     RaceName = init_race['raceName']
     Locality = init_race['Circuit']['Location']['locality']
-    print(f'Today event was {RaceName} at {Locality}!\n')
+    print(f'The last race was {RaceName} at {Locality}!\n')
 
     # Get results and place infos in a table
     results = []
